@@ -14,9 +14,6 @@ def extract_tar(tar_filename, directory=getcwd()):
             target_dir = Path(directory)
             target_file = Path(normpath(path_join(directory, tar_file.name)))
             if target_dir not in target_file.parents:
-                print("{} attempting to escape target directory".format(
-                    tar_file.name
-                ))
                 continue
 
             # Same as above but for the symlink target
@@ -25,8 +22,6 @@ def extract_tar(tar_filename, directory=getcwd()):
                     path_join(directory, tar_file.linkname)
                 ))
                 if target_dir not in symlink_file.parents:
-                    print("{} symlink target attempting to "
-                          "escape target directory".format(tar_file.linkname))
                     continue
 
             tar.extract(tar_file, path=directory)
